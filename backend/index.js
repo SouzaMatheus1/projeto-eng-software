@@ -147,11 +147,12 @@ app.get('/trabalho/:cpf', async (req, res) => {
 // Consultar PCD
 app.get('/pcd/:cpf', async (req, res) => {
   const { cpf } = req.params;
-console.log(cpf);
+
   try {
-    const pcd = await prisma.pcd.findUnique({
+    const pcd = await prisma.pCD.findUnique({
       where: { cpf: cpf },
     });
+
     if (pcd) {
       res.json(pcd);
     } else {
