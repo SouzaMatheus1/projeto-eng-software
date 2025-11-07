@@ -21,16 +21,14 @@ app.post('/login', async (req, res) => {
     const user = await prisma.user.findFirst({
       where: {
         cpf: cpf,
-        senha: senha, // NUNCA faça isso em produção. Use hash e salt.
+        senha: senha
       },
     });
 
     if (user) {
-      // Retorna o usuário encontrado (sem a senha)
       const { senha, ...userData } = user;
       res.json(userData);
     } else {
-      // Usuário não encontrado ou senha incorreta
       res.status(401).json({ error: 'CPF ou senha inválidos.' });
     }
   } catch (error) {
@@ -71,6 +69,114 @@ app.get('/familia/:cpf', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: 'Erro ao consultar a família.' });
+  }
+});
+
+// Consultar Identificação
+app.get('/identificacao/:cpf', async (req, res) => {
+  const { cpf } = req.params;
+
+  try {
+    const identificacao = await prisma.identificacao.findUnique({
+      where: { cpf: cpf },
+    });
+    if (identificacao) {
+      res.json(identificacao);
+    } else {
+      res.status(404).json({ error: 'Dados de identificação não encontrados.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao consultar dados de identificação.' });
+  }
+});
+
+// Consultar Bolsa Família
+app.get('/bolsafamilia/:cpf', async (req, res) => {
+  const { cpf } = req.params;
+
+  try {
+    const bolsaFamilia = await prisma.bolsaFamilia.findUnique({
+      where: { cpf: cpf },
+    });
+    if (bolsaFamilia) {
+      res.json(bolsaFamilia);
+    } else {
+      res.status(404).json({ error: 'Dados do Bolsa Família não encontrados.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao consultar dados do Bolsa Família.' });
+  }
+});
+
+// Consultar Naturalidade
+app.get('/naturalidade/:cpf', async (req, res) => {
+  const { cpf } = req.params;
+
+  try {
+    const naturalidade = await prisma.naturalidade.findUnique({
+      where: { cpf: cpf },
+    });
+    if (naturalidade) {
+      res.json(naturalidade);
+    } else {
+      res.status(404).json({ error: 'Dados de naturalidade não encontrados.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao consultar dados de naturalidade.' });
+  }
+});
+
+// Consultar Relação Trabalhista
+app.get('/trabalho/:cpf', async (req, res) => {
+  const { cpf } = req.params;
+
+  try {
+    const relacaoTrabalhista = await prisma.relacaoTrabalhista.findFirst({
+      where: { cpf: cpf },
+    });
+    if (relacaoTrabalhista) {
+      res.json(relacaoTrabalhista);
+    } else {
+      res.status(404).json({ error: 'Relação trabalhista não encontrada.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao consultar relação trabalhista.' });
+  }
+});
+
+// Consultar PCD
+app.get('/pcd/:cpf', async (req, res) => {
+  const { cpf } = req.params;
+console.log(cpf);
+  try {
+    const pcd = await prisma.pcd.findUnique({
+      where: { cpf: cpf },
+    });
+    if (pcd) {
+      res.json(pcd);
+    } else {
+      res.status(404).json({ error: 'Dados de PCD não encontrados.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao consultar dados de PCD.' });
+  }
+});
+
+// Consultar Município por Código IBGE
+app.get('/municipio/:ibge', async (req, res) => {
+  const { ibge } = req.params;
+
+  try {
+    const municipio = await prisma.municipio.findUnique({
+      where: { codigoIBGE: ibge },
+    });
+    if (municipio) {
+      res.json(municipio);
+    } else {
+      res.status(404).json({ error: 'Município não encontrado.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao consultar município.' });
   }
 });
 

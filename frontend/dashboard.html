@@ -1,66 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Sistema CRAS</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="header">
-      <h1>Dashboard CRAS</h1>
-      <div>
-        <span id="welcome-message"></span>
-        <button id="logout-btn" class="btn btn-danger">Sair</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Sistema CRAS</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="js/script.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <h1>Dashboard CRAS</h1>
+    <div>
+      <span id="welcome-message"></span>
+      <button id="logout-btn" class="btn btn-danger">Sair</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="view-cidadao" class="dashboard-view">
+      <h2>Serviços ao Cidadão</h2>
+      <div class="card">
+        <h3>Consultar Cadastro Único</h3>
+        <form id="form-consulta-cadunico">
+          <label for="cpf-cadunico">Digite seu CPF:</label>
+          <input type="text" id="cpf-cadunico" />
+          <button type="submit-cadunico" class="btn">Consultar</button>
+        </form>
+        <div id="result-cadunico" class="results"></div>
       </div>
-    </header>
 
-    <main class="container">
-      <section id="view-cidadao" class="dashboard-view">
-        <h2>Serviços ao Cidadão</h2>
-        
-        <div class="card">
-          <h3>Consultar Cadastro Único (RF5)</h3>
-          <form id="form-consulta-cadunico">
-            <label for="cpf-cadunico">Digite seu CPF:</label>
-            <input type="text" id="cpf-cadunico" />
-            <button type="submit" class="btn">Consultar</button>
-          </form>
-          <div id="result-cadunico" class="results"></div>
-        </div>
+      <div class="card">
+        <h3>Agendar Atendimento</h3>
+        <p>Sua posição na fila é: <strong id="num-fila"></strong></p>
+        <button class="btn">Ver fila de espera</button>
+      </div>
+    </section>
 
-        <div class="card">
-            <h3>Agendar Atendimento (RF4)</h3>
-            <p>Sua posição na fila é: <strong id="num-fila"></strong></p>
-            <button class="btn">Ver fila de espera</button>
-        </div>
-      </section>
+    <section id="view-assistente" class="dashboard-view">
+      <h2>Painel do Assistente Social</h2>
+      <div class="card">
+        <h3>Consultar Família por CPF</h3>
+        <form id="form-consulta-familia-assistente">
+          <label for="cpf-chefe-assistente">CPF do Chefe de Família:</label>
+          <input type="text" id="cpf-chefe-assistente" />
+          <button type="submit-assistente" class="btn">Buscar</button>
+        </form>
+        <div id="result-familia-assistente" class="results"></div>
+      </div>
+    </section>
 
-      <section id="view-assistente" class="dashboard-view">
-        <h2>Painel do Assistente Social</h2>
-        
-        <div class="card">
-          <h3>Consultar Famílias Baixa Renda (RF3)</h3>
-          <form id="form-consulta-familia">
-            <label for="cpf-chefe">CPF do Chefe de Família:</label>
-            <input type="text" id="cpf-chefe" />
-            <button type="submit" class="btn">Buscar</button>
-          </form>
-          <div id="result-familia" class="results"></div>
-        </div>
-      </section>
+    <section id="view-admin" class="dashboard-view">
+      <h2>Painel de Administração</h2>
+      <div class="card">
+        <h3>Gerenciamento</h3>
+        <p>Área para extrair relatórios e gerenciar parâmetros do sistema.</p>
+        <button class="btn">Gerar Relatório de Atendimentos</button>
+      </div>
+    </section>
 
-      <section id="view-admin" class="dashboard-view">
-        <h2>Painel de Administração</h2>
-        <div class="card">
-          <h3>Gerenciamento</h3>
-          <p>Área para extrair relatórios e gerenciar parâmetros do sistema.</p>
-          <button class="btn">Gerar Relatório de Atendimentos</button>
-        </div>
-      </section>
+    <section id="view-consultas" class="dashboard-view">
+      <h2>Consultas Diversas</h2>
+      <div class="card">
+        <h3>Consultar Famílias Baixa Renda</h3>
+        <form id="form-consulta-familia-geral">
+          <label for="cpf-chefe">CPF do Chefe de Família:</label>
+          <input type="text" id="cpf-chefe" />
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <div id="result-familia" class="results"></div>
+      </div>
 
-    </main>
+      <div class="card">
+        <h3>Consultar Identificação</h3>
+        <form id="form-consulta-identificacao">
+          <label for="cpf-identificacao">Digite o CPF:</label>
+          <input type="text" id="cpf-identificacao" />
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <div id="result-identificacao" class="results"></div>
+      </div>
 
-    <script type="module" src="js/script.js"></script>
-  </body>
+      <div class="card">
+        <h3>Consultar Bolsa Família</h3>
+        <form id="form-consulta-bolsafamilia">
+          <label for="cpf-bolsafamilia">Digite o CPF:</label>
+          <input type="text" id="cpf-bolsafamilia" />
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <div id="result-bolsafamilia" class="results"></div>
+      </div>
+
+      <div class="card">
+        <h3>Consultar Naturalidade</h3>
+        <form id="form-consulta-naturalidade">
+          <label for="cpf-naturalidade">Digite o CPF:</label>
+          <input type="text" id="cpf-naturalidade" />
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <div id="result-naturalidade" class="results"></div>
+      </div>
+
+      <div class="card">
+        <h3>Consultar Relação Trabalhista</h3>
+        <form id="form-consulta-trabalho">
+          <label for="cpf-trabalho">Digite o CPF:</label>
+          <input type="text" id="cpf-trabalho" />
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <div id="result-trabalho" class="results"></div>
+      </div>
+
+      <div class="card">
+        <h3>Consultar Base PCD</h3>
+        <form id="form-consulta-pcd">
+          <label for="cpf-pcd">Digite o CPF:</label>
+          <input type="text" id="cpf-pcd" />
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <div id="result-pcd" class="results"></div>
+      </div>
+
+      <div class="card">
+        <h3>Consultar Município</h3>
+        <form id="form-consulta-municipio">
+          <label for="ibge-municipio">Digite o Código IBGE:</label>
+          <input type="text" id="ibge-municipio" />
+          <button type="submit" class="btn">Buscar</button>
+        </form>
+        <div id="result-municipio" class="results"></div>
+      </div>
+    </section>
+
+
+  </main>
+</body>
+
 </html>
