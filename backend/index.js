@@ -47,7 +47,7 @@ app.get('/cadunico/:cpf', async (req, res) => {
     if (cadastro) {
       res.json(cadastro);
     } else {
-      res.status(404).json({ error: 'Cadastro não encontrado.' });
+      res.status(404).json({ error: 'Cidadão não encontrado na base do Cadastro Único.' });
     }
   } catch (error) {
     res.status(500).json({ error: 'Erro ao consultar o Cadastro Único.' });
