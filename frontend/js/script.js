@@ -29,23 +29,23 @@ const viewConsultas = document.getElementById('view-consultas');
 if (currentUser.tipo === 'Cidadão') {
   viewCidadao.style.display = 'block';
 
-  const numFila = document.getElementById('num-fila');
-  let posicaoNaFila = 23;
-  numFila.textContent = '#' + posicaoNaFila;
-  
-  const btnFila = document.getElementById('btn-fila-espera');
-  btnFila.disabled = true;
-
-  const atualizaFila = setInterval(() => {
-    if (posicaoNaFila > 1) {
-      posicaoNaFila--;
-      numFila.textContent = '#' + posicaoNaFila;
-    } else {
-      numFila.textContent = "Sua vez!";
-      btnFila.disabled = false;
-      clearInterval(atualizaFila);
-    }
-  }, 5000);
+  // const numFila = document.getElementById('num-fila');
+  // let posicaoNaFila = 23;
+  // numFila.textContent = '#' + posicaoNaFila;
+  // 
+  // const btnFila = document.getElementById('btn-fila-espera');
+  // btnFila.disabled = true;
+// 
+  // const atualizaFila = setInterval(() => {
+  //   if (posicaoNaFila > 1) {
+  //     posicaoNaFila--;
+  //     numFila.textContent = '#' + posicaoNaFila;
+  //   } else {
+  //     numFila.textContent = "Sua vez!";
+  //     btnFila.disabled = false;
+  //     clearInterval(atualizaFila);
+  //   }
+  // }, 5000);
 } else if (currentUser.tipo === 'Assistente Social') {
   viewAssistente.style.display = 'block';
   viewConsultas.style.display = 'block';
